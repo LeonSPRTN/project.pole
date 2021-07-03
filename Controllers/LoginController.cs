@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace project.pole.Views.PersonalAccount
 {
-    public class AuthorizationController: Controller
+    public class LoginController: Controller
     {
-        private readonly ILogger<AuthorizationController> _logger;
+        private readonly ILogger<LoginController> _logger;
 
-        public AuthorizationController(ILogger<AuthorizationController> logger)
+        public LoginController(ILogger<LoginController> logger)
         {
             _logger = logger;
         }
@@ -42,6 +43,13 @@ namespace project.pole.Views.PersonalAccount
             }
             TempData["Error"] = "Ошибка. Неверный логин или пароль";
             return View("login");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
         }
     }
 }
