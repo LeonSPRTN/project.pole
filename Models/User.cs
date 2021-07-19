@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project.pole.Models
 {
-    public class User
+    [Table("user")]
+    public class User : BaseModel
     {
-        public int Id { get; set; }
+        [Column("login")]
+        [Display(Prompt = "Введите логин")]
+        [DataType(DataType.Text)]
         public string Login { get; set; }
+        
+        [Column("password")]
+        [Display(Prompt = "Введите пароль")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }
