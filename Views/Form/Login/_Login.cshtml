@@ -1,0 +1,18 @@
+﻿@model project.pole.Models.User
+@{
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+@using(Html.BeginRouteForm("Login",new {ReturnUrl = System.Net.WebUtility.UrlEncode(returnUrl)}, FormMethod.Post)){
+<div>
+    <div>
+        @Html.TextBox("Login")
+    </div>
+    <div>
+        @Html.Password("Password")
+    </div>
+    <div>
+        <input type="submit" value="Войти" />
+    </div>
+</div>
+}
