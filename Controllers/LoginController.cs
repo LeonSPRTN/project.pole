@@ -46,7 +46,7 @@ namespace project.pole.Views.PersonalAccount
                     ClaimsIdentity claimsIdentity = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal claimsPrincipal = new(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);
-                    return Redirect(returnUrl);
+                    if (returnUrl != null) return Redirect(returnUrl);
                 }
             }
             TempData["Error"] = "Ошибка. Неверный логин или пароль";

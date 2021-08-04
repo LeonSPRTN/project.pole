@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace project.pole.Controllers
 {
-    public class PersonalAccountController: Controller
+    public class ProfileController: Controller
     {
-        private readonly ILogger<PersonalAccountController> _logger;
+        private readonly ILogger<ProfileController> _logger;
 
-        public PersonalAccountController(ILogger<PersonalAccountController> logger)
+        public ProfileController(ILogger<ProfileController> logger)
         {
             _logger = logger;
         }
 
         [Authorize]
-        [Route("PersonalAccount/Index")]
+        [Route("Profile/Index")]
         public IActionResult Index()
         {
             return View();
