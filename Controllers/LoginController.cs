@@ -12,25 +12,25 @@ using System.Threading.Tasks;
 
 namespace project.pole.Views.PersonalAccount
 {
-    public class LoginController: Controller
+    public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
         private readonly ApplicationContext _context;
 
         public LoginController(ILogger<LoginController> logger, ApplicationContext context)
         {
-            _logger  = logger;
+            _logger = logger;
             _context = context;
         }
 
-        [HttpGet("Login")]
+        [HttpGet("login")]
         public IActionResult Login(string returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Validate(string login, string password, string returnUrl)
         {
             await using (_context)
@@ -46,9 +46,17 @@ namespace project.pole.Views.PersonalAccount
                     ClaimsIdentity claimsIdentity = new(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     ClaimsPrincipal claimsPrincipal = new(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);
-                    if (returnUrl != null) return Redirect(returnUrl);
+                    if (returnUrl != null)
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToRoute("profile_route");
+                    }
                 }
             }
+
             TempData["Error"] = "Ошибка. Неверный логин или пароль";
             return View("login");
         }
