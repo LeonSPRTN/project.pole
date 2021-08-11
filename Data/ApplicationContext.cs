@@ -8,6 +8,8 @@ namespace project.pole.Data
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Object> Objects { get; set; }
+        public DbSet<Estimate> Estimates { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options) 
@@ -16,7 +18,7 @@ namespace project.pole.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<User>().HasData(new User { Login = "admin", Password = "admin" });
+            
         }
 
     }
