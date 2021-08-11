@@ -7,27 +7,27 @@ namespace project.pole.Models
     public class Object : BaseModel
     {
         [Column("name")]
-        [Display(Prompt = "Наименование организации")]
+        [Display(Name = "Наименование организации")]
         public string Name{ get; set; }
         
         [Column("region")]
-        [Display(Prompt = "Область")]
+        [Display(Name = "Область")]
         public string Region { get; set; }
         
         [Column("district")]
-        [Display(Prompt = "Регион/Район")]
+        [Display(Name = "Регион/Район")]
         public string District{ get; set; }
         
         [Column("city")]
-        [Display(Prompt = "Город/Населенный пункт")]
+        [Display(Name = "Город/Населенный пункт")]
         public string City{ get; set; }
         
         [Column("street")]
-        [Display(Prompt = "Улица")]
+        [Display(Name = "Улица")]
         public string Street{ get; set; }
         
         [Column("building")]
-        [Display(Prompt = "Дом")]
+        [Display(Name = "Дом")]
         public string Building{ get; set; }
     }
 }
