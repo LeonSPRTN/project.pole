@@ -1,0 +1,25 @@
+@using Object = project.pole.Models.Object
+
+@{
+    ViewBag.Title = "Список объектов";
+    Layout = "_Layout";
+}
+
+<div>
+    <h3>@ViewBag.Title</h3>
+    <table>
+        <tr class="card-header">
+            <td>
+                <p>Объекты</p>
+            </td>
+        </tr>
+        @foreach (Object obj in Model)
+        {
+            <tr class="border-bottom">
+                <td>
+                    <a asp-route="object_show_route" asp-route-id="@obj.Id">@obj.Name</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
