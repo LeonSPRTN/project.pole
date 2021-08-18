@@ -19,8 +19,11 @@
         @foreach (Object obj in Model)
         {
             <tr class="border-bottom">
-                <td>
+                <td class="border-0">
                     <a asp-route="object_show_route" asp-route-id="@obj.Id">@obj.Name</a>
+                </td>
+                <td>
+                    <a asp-route="object_delete_route" asp-route-id="@obj.Id">Удалить</a>
                 </td>
             </tr>
         }

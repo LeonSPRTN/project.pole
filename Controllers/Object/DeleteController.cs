@@ -34,10 +34,14 @@ namespace project.pole.Controllers.Object
             {
                 var obj = await objects.FindAsync(id);
 
-                if (obj != null) objects.Remove(obj);
+                if (obj != null)
+                {
+                    objects.Remove(obj);
+                    await _context.SaveChangesAsync();
+                }
             }
 
-            return View("~/Views/Object/Show.cshtml");
+            return View("~/Views/Object/Index.cshtml", objects);
         }
     }
 }
