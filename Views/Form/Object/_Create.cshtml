@@ -1,0 +1,35 @@
+@model project.pole.Models.Object
+
+<div class="address">
+    @using (Html.BeginForm(FormMethod.Post,
+        new { @class = "js-form-address" }))
+    {
+        <div class="field">
+            @Html.LabelFor(m => m.Name, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Region, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.Region)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.District, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.District)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.City, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.City)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Street, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.Street)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Building, new { @class = "col-form-label" })
+            @Html.TextBoxFor(m => m.Building)
+        </div>
+        <div>
+            <button id="btn-submit" type="submit">Сохранить</button>
+        </div>
+    }
+</div>

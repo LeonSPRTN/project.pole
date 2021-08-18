@@ -1,9 +1,13 @@
 @model project.pole.Models.Object
 
 <div class="address">
-    @using (Html.BeginRouteForm("rrr", FormMethod.Post,
+    @using (Html.BeginRouteForm("object_update_route", FormMethod.Post,
         new { @class = "js-form-address" }))
     {
+        <div class="field" style="display: none">
+            @Html.LabelFor(m => m.Id)
+            @Html.TextBoxFor(m => m.Id)
+        </div>
         <div class="field">
             @Html.LabelFor(m => m.Name, new { @class = "col-form-label" })
             @Html.TextBoxFor(m => m.Name, new { @disabled = "disabled" })

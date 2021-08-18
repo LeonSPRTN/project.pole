@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,6 +9,7 @@ namespace project.pole.Models
     {
         [Column("name")]
         [Display(Name = "Наименование организации")]
+        [Required]
         public string Name{ get; set; }
         
         [Column("region")]
@@ -29,5 +31,7 @@ namespace project.pole.Models
         [Column("building")]
         [Display(Name = "Дом")]
         public string Building{ get; set; }
+        
+        public List<Estimate> Estimaet { get; set; }
     }
 }

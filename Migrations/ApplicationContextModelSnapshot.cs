@@ -102,12 +102,17 @@ namespace project.pole.Migrations
             modelBuilder.Entity("project.pole.Models.Estimate", b =>
                 {
                     b.HasOne("project.pole.Models.Object", "Object")
-                        .WithMany()
+                        .WithMany("Estimaet")
                         .HasForeignKey("ObjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Object");
+                });
+
+            modelBuilder.Entity("project.pole.Models.Object", b =>
+                {
+                    b.Navigation("Estimaet");
                 });
 #pragma warning restore 612, 618
         }
