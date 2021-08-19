@@ -13,9 +13,15 @@ namespace project.pole.Controllers.Object
     [Route("object/update/", Name = "object_update_route")]
     public class UpdateController : Controller
     {
-        private readonly ILogger<EstimateController> _logger;
+        private readonly ILogger<UpdateController> _logger;
         private readonly ApplicationContext _context;
-        public UpdateController(ILogger<EstimateController> logger, ApplicationContext context)
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="context"></param>
+        public UpdateController(ILogger<UpdateController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;

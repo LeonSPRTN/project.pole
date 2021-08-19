@@ -7,13 +7,22 @@ using project.pole.Data;
 
 namespace project.pole.Controllers.Object
 {
+    /// <summary>
+    /// Object Index controller
+    /// </summary>
     [Authorize]
     [Route("object", Name = "object_route")]
     public class IndexController : Controller
     {
-        private readonly ILogger<EstimateController> _logger;
+        private readonly ILogger<IndexController> _logger;
         private readonly ApplicationContext _context;
-        public IndexController(ILogger<EstimateController> logger, ApplicationContext context)
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="context"></param>
+        public IndexController(ILogger<IndexController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;

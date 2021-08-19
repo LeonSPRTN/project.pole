@@ -13,16 +13,22 @@ namespace project.pole.Controllers.Object
     [Route("object/create", Name = "object_create_route")]
     public class CreateController : Controller
     {
-        private readonly ILogger<EstimateController> _logger;
+        private readonly ILogger<CreateController> _logger;
         private readonly ApplicationContext _context;
-        public CreateController(ILogger<EstimateController> logger, ApplicationContext context)
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="context"></param>
+        public CreateController(ILogger<CreateController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;
         }
         
         /// <summary>
-        /// 
+        /// Action create
         /// </summary>
         /// <returns>View</returns>
         public IActionResult Action()

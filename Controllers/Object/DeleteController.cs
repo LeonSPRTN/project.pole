@@ -13,10 +13,15 @@ namespace project.pole.Controllers.Object
     [Route("object/delete/{id}", Name = "object_delete_route")]
     public class DeleteController : Controller
     {
-        private readonly ILogger<EstimateController> _logger;
+        private readonly ILogger<DeleteController> _logger;
         private readonly ApplicationContext _context;
 
-        public DeleteController(ILogger<EstimateController> logger, ApplicationContext context)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="context"></param>
+        public DeleteController(ILogger<DeleteController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;

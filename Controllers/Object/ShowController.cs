@@ -13,15 +13,15 @@ namespace project.pole.Controllers.Object
     [Route("object/show/{id}", Name = "object_show_route")]
     public class ShowController: Controller
     {
-        private readonly ILogger<EstimateController> _logger;
+        private readonly ILogger<ShowController> _logger;
         private readonly ApplicationContext _context;
         
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="context"></param>
-        public ShowController(ILogger<EstimateController> logger, ApplicationContext context)
+        public ShowController(ILogger<ShowController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;
