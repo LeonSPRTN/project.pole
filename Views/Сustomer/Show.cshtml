@@ -1,0 +1,8 @@
+@{
+    ViewBag.Title = "Объект";
+    Layout = "_Layout";
+}
+
+@{
+    await Html.RenderPartialAsync("/Views/Form/Customer/_Update.cshtml", Model, ViewData);
+}

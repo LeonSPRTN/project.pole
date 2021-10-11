@@ -1,0 +1,62 @@
+@model project.pole.Models.Customer
+
+<section class="container">
+    @using (Html.BeginForm(FormMethod.Post,
+        new {@class = "js-form-address"}))
+    {
+        <div class="field">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Region, new {@id = "region"})
+            @Html.TextBoxFor(m => m.Region)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Area, new {@id = "area"})
+            @Html.TextBoxFor(m => m.Area)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.City, new {@id = "city"})
+            @Html.TextBoxFor(m => m.City)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Settlement, new {@id = "settlement"})
+            @Html.TextBoxFor(m => m.Settlement)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Street, new {@id = "street"})
+            @Html.TextBoxFor(m => m.Street)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.House, new {@id = "house"})
+            @Html.TextBoxFor(m => m.House)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Flat, new {@id = "flat"})
+            @Html.TextBoxFor(m => m.Flat)
+        </div>
+        <div>
+            <button id="btn-submit" type="submit">Сохранить</button>
+        </div>
+    }
+</section>
+
+@* <section class="container"> *@
+@*     <h1>Подставить индекс после выбора адреса в отдельное поле (гранулярные подсказки)</h1> *@
+@*     <label for="region">Регион:</label><input id="region" name="region" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="area">Район:</label><input id="area" name="area" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="city">Город:</label><input id="city" name="city" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="settlement">Населенный пункт:</label><input id="settlement" name="settlement" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="street">Улица:</label><input id="street" name="street" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="house">Дом:</label><input id="house" name="house" type="text" /> *@
+@*     <br/><br/> *@
+@*     <label for="flat">Квартира:</label><br/><input id="flat" name="flat" type="text" /> *@
+@*     <br/><br/> *@
+@*     <input id="postal_code" name="postal_code" type="text" placeholder="индекс" /> *@
+@* </section> *@

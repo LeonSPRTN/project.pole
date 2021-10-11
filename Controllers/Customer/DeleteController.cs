@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using project.pole.Data;
 
-namespace project.pole.Controllers.Object
+namespace project.pole.Controllers.Customer
 {
     /// <summary>
     /// Object Delete controller
     /// </summary>
     [Authorize]
-    [Route("object/delete/{id}", Name = "object_delete_route")]
+    [Route("customer/delete/{long id}", Name = "customer_delete_route")]
     public class DeleteController : Controller
     {
         private readonly ILogger<DeleteController> _logger;
@@ -33,7 +33,7 @@ namespace project.pole.Controllers.Object
         /// <returns>View</returns>
         public async Task<IActionResult> Action(long id)
         {
-            var objects = _context.Objects;
+            var objects = _context.Customers;
 
             if (id > 0)
             {
@@ -46,7 +46,7 @@ namespace project.pole.Controllers.Object
                 }
             }
 
-            return View("~/Views/Object/Index.cshtml", objects);
+            return View("~/Views/Сustomer/Index.cshtml", objects);
         }
     }
 }

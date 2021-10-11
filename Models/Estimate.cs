@@ -1,25 +1,28 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project.pole.Models
 {
     [Table("estimate")]
-    public class Estimate: BaseModel
+    public class Estimate
     {
         private DateTime _dateCreated;
 
+        [Key]
+        [ForeignKey("Customer")]
+        public long Id { get; init; }
+
         [Column("path")]
-        public string Path { get; set; } 
-        
-        [Column("object_id")]
-        public long ObjectId { get; set; }
-        public Object Object { get; set; }
-        
+        public string Path { get; set; }
+
         [Column("date_created")] 
         public DateTime DateCreated
         {
             get => _dateCreated;
             private set => _dateCreated = DateTime.Now;
         }
+
+
     }
 }

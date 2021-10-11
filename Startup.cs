@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using project.pole.Data;
 using System;
 using MySqlConnector;
+using project.pole.Data.Base;
+using project.pole.Data.Repositories;
 
 namespace project.pole
 {
@@ -32,6 +34,8 @@ namespace project.pole
                 .AddCookie(options => {
                     options.LoginPath = "/Login";
                 });
+
+            AddRepositories(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +64,12 @@ namespace project.pole
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
             });
+        }
+
+        private void AddRepositories(IServiceCollection services)
+        {
+            services.AddTransient<IEstimateRepository, EstimateRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
         }
     }
 }

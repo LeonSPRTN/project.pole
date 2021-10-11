@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using project.pole.Data;
 
-namespace project.pole.Controllers.Object
+namespace project.pole.Controllers.Customer
 {
     /// <summary>
-    /// Object Update controller
+    /// Object Show controller
     /// </summary>
     [Authorize]
-    [Route("object/update/", Name = "object_update_route")]
-    public class UpdateController : Controller
+    [Route("customer/show/{id}", Name = "customer_show_route")]
+    public class ShowController: Controller
     {
-        private readonly ILogger<UpdateController> _logger;
+        private readonly ILogger<ShowController> _logger;
         private readonly ApplicationContext _context;
         
         /// <summary>
@@ -21,22 +21,22 @@ namespace project.pole.Controllers.Object
         /// </summary>
         /// <param name="logger"></param>
         /// <param name="context"></param>
-        public UpdateController(ILogger<UpdateController> logger, ApplicationContext context)
+        public ShowController(ILogger<ShowController> logger, ApplicationContext context)
         {
             _logger = logger;
             _context = context;
         }
-        
+
         /// <summary>
-        /// Action update
+        /// Action show
         /// </summary>
+        /// <param name="id"></param>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action(Models.Object obj)
+        public async Task<IActionResult> Action(long id)
         {
-            _context.Objects.Update(obj);
-            await _context.SaveChangesAsync();
-                
-            return RedirectToRoute("object_route");
+            var obj = await _context.Customers.FindAsync(id);
+
+            return View("~/Views/Сustomer/Show.cshtml", obj);
         }
     }
 }

@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace project.pole.Models
 {
-    [Table("object")]
-    public class Object : BaseModel
+    [Table("customer")]
+    public class Customer : BaseModel
     {
         [Column("name")]
         [Display(Name = "Наименование организации")]
@@ -13,25 +13,33 @@ namespace project.pole.Models
         public string Name{ get; set; }
         
         [Column("region")]
-        [Display(Name = "Область")]
+        [Display(Name = "Регион")]
         public string Region { get; set; }
         
-        [Column("district")]
-        [Display(Name = "Регион/Район")]
-        public string District{ get; set; }
+        [Column("area")]
+        [Display(Name = "Район")]
+        public string Area{ get; set; }
         
         [Column("city")]
-        [Display(Name = "Город/Населенный пункт")]
+        [Display(Name = "Город")]
         public string City{ get; set; }
+
+        [Column("settlement")]
+        [Display(Name = "Населенный пункт")]
+        public string Settlement{ get; set; }
         
         [Column("street")]
         [Display(Name = "Улица")]
         public string Street{ get; set; }
         
-        [Column("building")]
+        [Column("house")]
         [Display(Name = "Дом")]
-        public string Building{ get; set; }
+        public string House{ get; set; }
+
+        [Column("Flat")]
+        [Display(Name = "Квартира/Офис")]
+        public string Flat{ get; set; }
         
-        public List<Estimate> Estimaet { get; set; }
+        public Estimate Estimaet { get; set; }
     }
 }

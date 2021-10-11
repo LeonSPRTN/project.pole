@@ -8,7 +8,7 @@ namespace project.pole.Data
     public class ApplicationContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Object> Objects { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Estimate> Estimates { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)

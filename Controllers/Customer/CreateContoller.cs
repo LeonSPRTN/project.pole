@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using project.pole.Data;
 
-namespace project.pole.Controllers.Object
+namespace project.pole.Controllers.Customer
 {
     /// <summary>
     /// Object Create Controller 
     /// </summary>
     [Authorize]
-    [Route("object/create", Name = "object_create_route")]
+    [Route("customer/create", Name = "customer_create_route")]
     public class CreateController : Controller
     {
         private readonly ILogger<CreateController> _logger;
@@ -33,13 +33,13 @@ namespace project.pole.Controllers.Object
         /// <returns>View</returns>
         public IActionResult Action()
         {
-            return View("~/Views/Object/Create.cshtml");
+            return View("~/Views/Сustomer/Create.cshtml");
         }
         
-        [HttpPost("~/Object/Create")]
-        public async Task<IActionResult> Create(Models.Object obj)
+        [HttpPost("~/customer/create")]
+        public async Task<IActionResult> Create(Models.Customer obj)
         {
-            await _context.Objects.AddAsync(obj);
+            await _context.Customers.AddAsync(obj);
             await _context.SaveChangesAsync();
             
             return RedirectToRoute("object_route");

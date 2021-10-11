@@ -1,0 +1,43 @@
+@model project.pole.Models.Customer
+
+<div class="address">
+    @using (Html.BeginRouteForm("object_update_route", FormMethod.Post,
+        new {@class = "js-form-address"}))
+    {
+        <div class="field">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Region, new {@id = "region"})
+            @Html.TextBoxFor(m => m.Region)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Area, new {@id = "area"})
+            @Html.TextBoxFor(m => m.Area)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.City, new {@id = "city"})
+            @Html.TextBoxFor(m => m.City)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Settlement, new {@id = "settlement"})
+            @Html.TextBoxFor(m => m.Settlement)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Street, new {@id = "street"})
+            @Html.TextBoxFor(m => m.Street)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.House, new {@id = "house"})
+            @Html.TextBoxFor(m => m.House)
+        </div>
+        <div class="field">
+            @Html.LabelFor(m => m.Flat, new {@id = "flat"})
+            @Html.TextBoxFor(m => m.Flat)
+        </div>
+        <div>
+            <button id="btn-submit" type="submit">Сохранить</button>
+        </div>
+    }
+</div>

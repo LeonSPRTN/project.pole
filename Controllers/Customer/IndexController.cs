@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using project.pole.Data;
 
-namespace project.pole.Controllers.Object
+namespace project.pole.Controllers.Customer
 {
     /// <summary>
     /// Object Index controller
     /// </summary>
     [Authorize]
-    [Route("object", Name = "object_route")]
+    [Route("customer", Name = "customer_route")]
     public class IndexController : Controller
     {
         private readonly ILogger<IndexController> _logger;
@@ -34,9 +34,9 @@ namespace project.pole.Controllers.Object
         /// <returns>View</returns>
         public async Task<IActionResult> Action()
         {
-            var objects = await _context.Objects.ToListAsync();
+            var objects = await _context.Customers.ToListAsync();
             
-            return View("~/Views/Object/Index.cshtml", objects);
+            return View("~/Views/Сustomer/Index.cshtml", objects);
         }
     }
 }
