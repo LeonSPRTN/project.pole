@@ -18,12 +18,12 @@ function clearPostalCode() {
 }
 
 // регион
-$region.suggestions({
-    token: token,
-    type: type,
-    hint: false,
-    bounds: "region"
-});
+// $region.suggestions({
+//     token: token,
+//     type: type,
+//     hint: false,
+//     bounds: "region"
+// });
 
 // район
 $area.suggestions({

@@ -32,11 +32,11 @@ namespace project.pole.Controllers.Estimate
         /// Action index
         /// </summary>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action()
+        public string Action()
         {
-            var estimates = await _context.Estimates.ToListAsync();
-            
-            return View("~/Views/Estimate/Index.cshtml", estimates);
+            // var estimates = await _context.Estimates.Find();
+
+            return "plug";
         }
     }
 }

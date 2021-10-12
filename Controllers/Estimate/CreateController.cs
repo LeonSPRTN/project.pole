@@ -7,7 +7,7 @@ namespace project.pole.Controllers.Estimate
     /// Estimate Create controller
     /// </summary>
     [Authorize]
-    [Route("estimate/create/{id}", Name = "estimate_show_route")]
+    [Route("estimate/create/{id}", Name = "estimate_create_route")]
     public class CreateController: Controller
     {
         /// <summary>

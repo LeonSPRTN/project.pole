@@ -28,4 +28,10 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Estimate\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\kladr\jquery.fias.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\kladr\jquery.fias.min.js" />
+  </ItemGroup>
+
 </Project>
