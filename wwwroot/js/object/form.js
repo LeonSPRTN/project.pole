@@ -1,29 +1,21 @@
 // Замените на свой API-ключ
-var token = "ad3bbfe0bf9ad96ff2cc9fb31ecd13ba439c7b71";
+const token = "ad3bbfe0bf9ad96ff2cc9fb31ecd13ba439c7b71";
 
-var type = "ADDRESS";
-var $region = $("#region");
-var $area = $("#area");
-var $city = $("#city");
-var $settlement = $("#settlement");
-var $street = $("#street");
-var $house = $("#house");
-
-function showPostalCode(suggestion) {
-    $("#postal_code").val(suggestion.data.postal_code);
-}
-
-function clearPostalCode() {
-    $("#postal_code").val("");
-}
+const type = "ADDRESS";
+const $region = $("#region");
+const $area = $("#area");
+const $city = $("#city");
+const $settlement = $("#settlement");
+const $street = $("#street");
+const $house = $("#house");
 
 // регион
-// $region.suggestions({
-//     token: token,
-//     type: type,
-//     hint: false,
-//     bounds: "region"
-// });
+$region.suggestions({
+    token: token,
+    type: type,
+    hint: false,
+    bounds: "region"
+});
 
 // район
 $area.suggestions({
@@ -41,8 +33,6 @@ $city.suggestions({
     hint: false,
     bounds: "city",
     constraints: $area,
-    onSelect: showPostalCode,
-    onSelectNothing: clearPostalCode
 });
 
 // geolocateCity($city);
@@ -54,8 +44,6 @@ $settlement.suggestions({
     hint: false,
     bounds: "settlement",
     constraints: $city,
-    onSelect: showPostalCode,
-    onSelectNothing: clearPostalCode
 });
 
 // улица
@@ -65,8 +53,6 @@ $street.suggestions({
     hint: false,
     bounds: "street",
     constraints: $settlement,
-    onSelect: showPostalCode,
-    onSelectNothing: clearPostalCode
 });
 
 // дом
@@ -76,6 +62,4 @@ $house.suggestions({
     hint: false,
     bounds: "house",
     constraints: $street,
-    onSelect: showPostalCode,
-    onSelectNothing: clearPostalCode
 });

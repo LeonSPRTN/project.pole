@@ -1,6 +1,6 @@
 @model project.pole.Models.Customer
 
-<section class="container">
+<section class="form-dadata">
     @using (Html.BeginForm(FormMethod.Post,
         new {@class = "js-form-address"}))
     {
@@ -9,31 +9,31 @@
             @Html.TextBoxFor(m => m.Name)
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.Region, new {@id = "region"})
-            @Html.TextBoxFor(m => m.Region)
+            @Html.LabelFor(m => m.Region)
+            @Html.TextBoxFor(m => m.Region, new {@id = "region"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.Area, new {@id = "area"})
-            @Html.TextBoxFor(m => m.Area)
+            @Html.LabelFor(m => m.Area)
+            @Html.TextBoxFor(m => m.Area, new {@id = "area"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.City, new {@id = "city"})
-            @Html.TextBoxFor(m => m.City)
+            @Html.LabelFor(m => m.City)
+            @Html.TextBoxFor(m => m.City, new {@id = "city"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.Settlement, new {@id = "settlement"})
-            @Html.TextBoxFor(m => m.Settlement)
+            @Html.LabelFor(m => m.Settlement)
+            @Html.TextBoxFor(m => m.Settlement, new {@id = "settlement"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.Street, new {@id = "street"})
-            @Html.TextBoxFor(m => m.Street)
+            @Html.LabelFor(m => m.Street)
+            @Html.TextBoxFor(m => m.Street, new {@id = "street"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.House, new {@id = "house"})
-            @Html.TextBoxFor(m => m.House)
+            @Html.LabelFor(m => m.House)
+            @Html.TextBoxFor(m => m.House, new {@id = "house"})
         </div>
         <div class="field">
-            @Html.LabelFor(m => m.Flat, new {@id = "flat"})
+            @Html.LabelFor(m => m.Flat, new {@id = "Flat"})
             @Html.TextBoxFor(m => m.Flat)
         </div>
         <div>
