@@ -9,7 +9,7 @@ namespace project.pole.Controllers.Customer
     /// Object Delete controller
     /// </summary>
     [Authorize]
-    [Route("customer/delete/{long id}", Name = "customer_delete_route")]
+    [Route("customer/delete/{id:long}", Name = "customer_delete_route")]
     public class DeleteController : Controller
     {
         private readonly ILogger<DeleteController> _logger;
@@ -41,7 +41,6 @@ namespace project.pole.Controllers.Customer
                     _customerRepository.Remove(customer);
                 }
             }
-
             return RedirectToRoute("customer_route");
         }
     }

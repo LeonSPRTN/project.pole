@@ -11,27 +11,29 @@
 
     <h3>@ViewBag.Title</h3>
 
-    <table class="table">
+    <br/>
+
+    <table class="table table-bordered table-invers">
         <thead class="thead-inverse">
-        <tr class="card-header">
-            <th>
-                <p>Заказчики</p>
+        <tr>
+            <th width="10%">
+                <p>Действия</p>
             </th>
             <th>
-                <p>Действия</p>
+                <p>Заказчики</p>
             </th>
         </tr>
         </thead>
         <tbody>
         @foreach (Customer customer in Model)
         {
-            <tr class="border-bottom">
-                <th class="border-0">
-                    <a asp-route="customer_show_route" asp-route-id="@customer.Id">@customer.Name</a>
-                </th>
+            <tr>
                 <th>
-                    <a asp-route="customer_delete_route" asp-route-id="@customer.Id">Удалить</a>
-                    <a asp-route="estimate_create_route" asp-route-id="@customer.Id">Сформировать смету</a>
+                    <a asp-route="customer_delete_route" asp-route-id="@customer.Id"><img src="image/icon/icon_delete.png" alt="Удалить"/></a>
+                    <a asp-route="estimate_create_route" asp-route-id="@customer.Id"><img src="image/icon/icons_estimate.png" alt="Сформировать смету"/></a>
+                </th>
+                <th class="border-0">
+                    <a asp-route="customer_show_route" asp-route-id="@customer.Id ">@customer.Name</a>
                 </th>
             </tr>
         }
