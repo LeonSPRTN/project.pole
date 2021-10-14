@@ -1,7 +1,7 @@
 @model project.pole.Models.Customer
 
-<div class="address">
-    @using (Html.BeginRouteForm("object_update_route", FormMethod.Post,
+<div class="form-dadata">
+    @using (Html.BeginRouteForm("customer_update_route", FormMethod.Post,
         new {@class = "js-form-address"}))
     {
         <div class="field">

@@ -8,24 +8,33 @@
 <div>
 
     <button type="button" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
-    
+
     <h3>@ViewBag.Title</h3>
-    <table>
+
+    <table class="table">
+        <thead class="thead-inverse">
         <tr class="card-header">
-            <td>
-                <p>Объекты</p>
-            </td>
+            <th>
+                <p>Заказчики</p>
+            </th>
+            <th>
+                <p>Действия</p>
+            </th>
         </tr>
+        </thead>
+        <tbody>
         @foreach (Customer customer in Model)
         {
             <tr class="border-bottom">
-                <td class="border-0">
-                    <a asp-route="object_show_route" asp-route-id="@customer.Id">@customer.Name</a>
-                </td>
-                <td>
-                    <a asp-route="object_delete_route" asp-route-id="@customer.Id">Удалить</a>
-                </td>
+                <th class="border-0">
+                    <a asp-route="customer_show_route" asp-route-id="@customer.Id">@customer.Name</a>
+                </th>
+                <th>
+                    <a asp-route="customer_delete_route" asp-route-id="@customer.Id">Удалить</a>
+                    <a asp-route="estimate_create_route" asp-route-id="@customer.Id">Сформировать смету</a>
+                </th>
             </tr>
         }
+        <tbody>
     </table>
 </div>
