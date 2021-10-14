@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using project.pole.Data.Base;
 using project.pole.Models;
 
@@ -5,29 +10,80 @@ namespace project.pole.Data.Repositories
 {
     public class CustomerRepository: ICustomerRepository
     {
+        private readonly ApplicationContext _context;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="context">Application context</param>
+        public CustomerRepository(ApplicationContext context)
+        {
+            _context = context;
+        }
+
+        /// <summary>
+        /// Adds Customer data to database
+        /// </summary>
+        /// <param name="customer">Customer</param>
         public void Create(Customer customer)
         {
-            throw new System.NotImplementedException();
+            using (_context)
+            {
+                _context.Customers.Add(customer);
+                _context.SaveChanges();
+            }
         }
 
-        public Estimate Get(Customer customer)
+        /// <summary>
+        /// Finds Customer record by id
+        /// </summary>
+        /// <param name="id">model id</param>
+        /// <returns>Return Customer</returns>
+        public Customer Find(long id)
         {
-            throw new System.NotImplementedException();
+            using (_context)
+            {
+                return _context.Customers
+                    .FirstOrDefault(x => x.Id == id);
+            }
         }
 
-        public Estimate GetAll()
+        /// <summary>
+        /// Retrieves all Customer records
+        /// </summary>
+        /// <returns>Customers list</returns>
+        public List<Customer> FindAll()
         {
-            throw new System.NotImplementedException();
+            using (_context)
+            {
+                return _context.Customers.ToList();
+            }
         }
 
+        /// <summary>
+        /// Updates Customer record in database
+        /// </summary>
+        /// <param name="customer">Customer</param>
         public void Update(Customer customer)
         {
-            throw new System.NotImplementedException();
+            using (_context)
+            {
+                _context.Customers.Update(customer);
+                _context.SaveChanges();
+            }
         }
 
-        public void Delete(Customer customer)
+        /// <summary>
+        /// Deletes Customer record in database
+        /// </summary>
+        /// <param name="customer"></param>
+        public void Remove(Customer customer)
         {
-            throw new System.NotImplementedException();
+            using (_context)
+            {
+                _context.Customers.Remove(customer);
+                _context.SaveChangesAsync();
+            }
         }
     }
 }

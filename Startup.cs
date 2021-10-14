@@ -68,7 +68,6 @@ namespace project.pole
 
         private void AddRepositories(IServiceCollection services)
         {
-            services.AddTransient<IEstimateRepository, EstimateRepository>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
         }
     }

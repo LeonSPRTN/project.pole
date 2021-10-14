@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -14,39 +13,36 @@ namespace project.pole.Controllers.Customer
     public class DeleteController : Controller
     {
         private readonly ILogger<DeleteController> _logger;
-        private readonly ApplicationContext _context;
+        private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="context"></param>
-        public DeleteController(ILogger<DeleteController> logger, ApplicationContext context)
+        /// <param name="logger">logger</param>
+        /// <param name="customerRepository">customer repository</param>
+        public DeleteController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _context = context;
+            _customerRepository = customerRepository;
         }
 
         /// <summary>
         /// Action delete
         /// </summary>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action(long id)
+        public IActionResult Action(long id)
         {
-            var objects = _context.Customers;
-
             if (id > 0)
             {
-                var obj = await objects.FindAsync(id);
+                var customer = _customerRepository.Find(id);
 
-                if (obj != null)
+                if (customer != null)
                 {
-                    objects.Remove(obj);
-                    await _context.SaveChangesAsync();
+                    _customerRepository.Remove(customer);
                 }
             }
 
-            return View("~/Views/Сustomer/Index.cshtml", objects);
+            return RedirectToRoute("customer_route");
         }
     }
 }

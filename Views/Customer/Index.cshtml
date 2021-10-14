@@ -1,7 +1,7 @@
-@using Object = project.pole.Models.Customer
+@using Customer = project.pole.Models.Customer
 
 @{
-    ViewBag.Title = "Список объектов";
+    ViewBag.Title = "Список заказчиков";
     Layout = "_Layout";
 }
 
@@ -16,14 +16,14 @@
                 <p>Объекты</p>
             </td>
         </tr>
-        @foreach (Object obj in Model)
+        @foreach (Customer customer in Model)
         {
             <tr class="border-bottom">
                 <td class="border-0">
-                    <a asp-route="object_show_route" asp-route-id="@obj.Id">@obj.Name</a>
+                    <a asp-route="object_show_route" asp-route-id="@customer.Id">@customer.Name</a>
                 </td>
                 <td>
-                    <a asp-route="object_delete_route" asp-route-id="@obj.Id">Удалить</a>
+                    <a asp-route="object_delete_route" asp-route-id="@customer.Id">Удалить</a>
                 </td>
             </tr>
         }

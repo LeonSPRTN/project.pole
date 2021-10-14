@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -13,18 +12,18 @@ namespace project.pole.Controllers.Customer
     [Route("customer/show/{id}", Name = "customer_show_route")]
     public class ShowController: Controller
     {
-        private readonly ILogger<ShowController> _logger;
-        private readonly ApplicationContext _context;
-        
+        private readonly ILogger<DeleteController> _logger;
+        private readonly ICustomerRepository _customerRepository;
+
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="context"></param>
-        public ShowController(ILogger<ShowController> logger, ApplicationContext context)
+        /// <param name="logger">logger</param>
+        /// <param name="customerRepository">customer repository</param>
+        public ShowController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _context = context;
+            _customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -32,11 +31,11 @@ namespace project.pole.Controllers.Customer
         /// </summary>
         /// <param name="id"></param>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action(long id)
+        public IActionResult Action(long id)
         {
-            var obj = await _context.Customers.FindAsync(id);
+            var customer = _customerRepository.Find(id);
 
-            return View("~/Views/Сustomer/Show.cshtml", obj);
+            return View("~/Views/Customer/Show.cshtml", customer);
         }
     }
 }

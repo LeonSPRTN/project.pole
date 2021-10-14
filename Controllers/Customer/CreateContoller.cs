@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -13,36 +12,40 @@ namespace project.pole.Controllers.Customer
     [Route("customer/create", Name = "customer_create_route")]
     public class CreateController : Controller
     {
-        private readonly ILogger<CreateController> _logger;
-        private readonly ApplicationContext _context;
-        
+        private readonly ILogger<DeleteController> _logger;
+        private readonly ICustomerRepository _customerRepository;
+
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="context"></param>
-        public CreateController(ILogger<CreateController> logger, ApplicationContext context)
+        /// <param name="logger">logger</param>
+        /// <param name="customerRepository">customer repository</param>
+        public CreateController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _context = context;
+            _customerRepository = customerRepository;
         }
         
         /// <summary>
-        /// Action create
+        /// Shows create Customer
         /// </summary>
-        /// <returns>View</returns>
-        public IActionResult Action()
+        /// <returns>View("~/Views/Customer/Create.cshtml")</returns>
+        public IActionResult ShowCreate()
         {
-            return View("~/Views/Сustomer/Create.cshtml");
+            return View("~/Views/Customer/Create.cshtml");
         }
-        
+
+        /// <summary>
+        /// Creates customer to database
+        /// </summary>
+        /// <param name="customer">customer</param>
+        /// <returns>RedirectToRoute("object_route")</returns>
         [HttpPost("~/customer/create")]
-        public async Task<IActionResult> Create(Models.Customer obj)
+        public IActionResult Create(Models.Customer customer)
         {
-            await _context.Customers.AddAsync(obj);
-            await _context.SaveChangesAsync();
-            
-            return RedirectToRoute("object_route");
+            _customerRepository.Create(customer);
+
+            return RedirectToRoute("customer_route");
         }
     }
 }

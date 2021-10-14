@@ -1,8 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -13,29 +12,28 @@ namespace project.pole.Controllers.Customer
     [Route("customer/update/", Name = "customer_update_route")]
     public class UpdateController : Controller
     {
-        private readonly ILogger<UpdateController> _logger;
-        private readonly ApplicationContext _context;
-        
+        private readonly ILogger<DeleteController> _logger;
+        private readonly ICustomerRepository _customerRepository;
+
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="context"></param>
-        public UpdateController(ILogger<UpdateController> logger, ApplicationContext context)
+        /// <param name="logger">logger</param>
+        /// <param name="customerRepository">customer repository</param>
+        public UpdateController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _context = context;
+            _customerRepository = customerRepository;
         }
-        
+
         /// <summary>
         /// Action update
         /// </summary>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action(Models.Customer customer)
+        public IActionResult Action(Models.Customer customer)
         {
-            _context.Customers.Update(customer);
-            await _context.SaveChangesAsync();
-                
+            _customerRepository.Update(customer);
+
             return RedirectToRoute("object_route");
         }
     }

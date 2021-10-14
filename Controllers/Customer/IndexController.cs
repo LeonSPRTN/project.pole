@@ -1,9 +1,7 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -14,29 +12,29 @@ namespace project.pole.Controllers.Customer
     [Route("customer", Name = "customer_route")]
     public class IndexController : Controller
     {
-        private readonly ILogger<IndexController> _logger;
-        private readonly ApplicationContext _context;
-        
+        private readonly ILogger<DeleteController> _logger;
+        private readonly ICustomerRepository _customerRepository;
+
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="logger"></param>
-        /// <param name="context"></param>
-        public IndexController(ILogger<IndexController> logger, ApplicationContext context)
+        /// <param name="logger">logger</param>
+        /// <param name="customerRepository">customer repository</param>
+        public IndexController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _context = context;
+            _customerRepository = customerRepository;
         }
         
         /// <summary>
         /// Action index
         /// </summary>
         /// <returns>View</returns>
-        public async Task<IActionResult> Action()
+        public IActionResult Action()
         {
-            var objects = await _context.Customers.ToListAsync();
-            
-            return View("~/Views/Сustomer/Index.cshtml", objects);
+            var customer = _customerRepository.FindAll();
+
+            return View("~/Views/Customer/Index.cshtml", customer);
         }
     }
 }
