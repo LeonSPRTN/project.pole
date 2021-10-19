@@ -12,7 +12,7 @@ namespace project.pole.Controllers.Customer
     [Route("customer/update/", Name = "customer_update_route")]
     public class UpdateController : Controller
     {
-        private readonly ILogger<DeleteController> _logger;
+        private readonly ILogger<UpdateController> _logger;
         private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace project.pole.Controllers.Customer
         /// </summary>
         /// <param name="logger">logger</param>
         /// <param name="customerRepository">customer repository</param>
-        public UpdateController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
+        public UpdateController(ILogger<UpdateController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
             _customerRepository = customerRepository;

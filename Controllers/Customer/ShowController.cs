@@ -12,7 +12,7 @@ namespace project.pole.Controllers.Customer
     [Route("customer/show/{id}", Name = "customer_show_route")]
     public class ShowController: Controller
     {
-        private readonly ILogger<DeleteController> _logger;
+        private readonly ILogger<ShowController> _logger;
         private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace project.pole.Controllers.Customer
         /// </summary>
         /// <param name="logger">logger</param>
         /// <param name="customerRepository">customer repository</param>
-        public ShowController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
+        public ShowController(ILogger<ShowController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
             _customerRepository = customerRepository;
