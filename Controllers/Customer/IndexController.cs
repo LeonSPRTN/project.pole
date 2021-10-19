@@ -12,7 +12,7 @@ namespace project.pole.Controllers.Customer
     [Route("customer", Name = "customer_route")]
     public class IndexController : Controller
     {
-        private readonly ILogger<DeleteController> _logger;
+        private readonly ILogger<IndexController> _logger;
         private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace project.pole.Controllers.Customer
         /// </summary>
         /// <param name="logger">logger</param>
         /// <param name="customerRepository">customer repository</param>
-        public IndexController(ILogger<DeleteController> logger, ICustomerRepository customerRepository)
+        public IndexController(ILogger<IndexController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
             _customerRepository = customerRepository;
