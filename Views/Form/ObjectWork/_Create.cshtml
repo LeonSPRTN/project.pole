@@ -1,0 +1,58 @@
+@model project.pole.Models.ObjectWork
+
+<section>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <div class="field">
+            @Html.LabelFor(o => o.City)
+            @Html.TextBoxFor(o => o.City)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.Street)
+            @Html.TextBoxFor(o => o.Street)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.House)
+            @Html.TextBoxFor(o => o.House)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.Body)
+            @Html.TextBoxFor(o => o.Body)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.PlotArea)
+            @Html.TextBoxFor(o => o.PlotArea)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.BuildingArea)
+            @Html.TextBoxFor(o => o.BuildingArea)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.PitDepth)
+            @Html.TextBoxFor(o => o.PitDepth)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.WinterCoefficient)
+            @Html.TextBoxFor(o => o.WinterCoefficient)
+        </div>
+        <div class="field">
+            @Html.LabelFor(o => o.Inteco)
+            @Html.TextBoxFor(o => o.Inteco)
+        </div>
+        <div class="field">
+            @Html.CheckBoxFor(o => o.WithoutRadon)
+            @Html.TextBoxFor(o => o.WithoutRadon)
+        </div>
+        <div class="field">
+            @Html.CheckBoxFor(o => o.Track)
+            @Html.TextBoxFor(o => o.Track)
+        </div>
+        <div class="field">
+            @Html.EditorFor(o => o.MoscowCoefficient)
+        </div>
+        @Html.TextBoxFor(o => o.CustomerId)
+        <div>
+            <button id="btn-submit" type="submit">Сохранить</button>
+        </div>
+    }
+</section>

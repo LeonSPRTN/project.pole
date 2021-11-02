@@ -1,0 +1,60 @@
+@using ObjectWork = project.pole.Models.ObjectWork
+
+@{
+    ViewBag.Title = $@"Объекты {ViewData["Customer"]}";
+    Layout = "_Layout";
+}
+
+<div>
+
+    <button type="button" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
+
+    <h3>@ViewBag.Title</h3>
+
+    <br/>
+
+    <table class="table table-bordered table-invers">
+        <thead class="thead-inverse">
+        <tr>
+            <th width="10%">
+                <p>Действия</p>
+            </th>
+            <th>
+                <p>Город</p>
+            </th>
+            <th>
+                <p>Улица</p>
+            </th>
+            <th>
+                <p>Дом</p>
+            </th>
+            <th>
+                <p>Корпус</p>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (ObjectWork objectWork in Model)
+        {
+            <tr>
+                <th>
+                    <a asp-route="customer_object_work_delete_route" asp-route-id="@objectWork.Id" asp-route-customerId="@objectWork.CustomerId"><img src="image/icon/object_work/icon_delete.png" alt="Удалить"/></a>
+                    <a asp-route="estimate_create_route" asp-route-id="@objectWork.Id"><img src="image/icon/object_work/icon_estimate.png" alt="Сформировать смету"/></a>
+                </th>
+                <th class="border-0">
+                    <a>@objectWork.City</a>
+                </th>
+                <th class="border-0">
+                    <a>@objectWork.Street</a>
+                </th>
+                <th class="border-0">
+                    <a>@objectWork.House</a>
+                </th>
+                <th class="border-0">
+                    <a>@objectWork.Body</a>
+                </th>
+            </tr>
+        }
+        <tbody>
+    </table>
+</div>
