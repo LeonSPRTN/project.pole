@@ -34,12 +34,8 @@ namespace project.pole.Controllers.Customer
         {
             if (id > 0)
             {
-                var customer = _customerRepository.Find(id);
+                _customerRepository.Remove(id);
 
-                if (customer != null)
-                {
-                    _customerRepository.Remove(customer);
-                }
             }
             return RedirectToRoute("customer_route");
         }

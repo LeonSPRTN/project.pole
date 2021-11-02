@@ -29,7 +29,8 @@ namespace project.pole.Controllers.Customer
         /// <summary>
         /// Shows create Customer
         /// </summary>
-        /// <returns>View("~/Views/Customer/Create.cshtml")</returns>
+        /// <returns>View("~/Views/ObjectWork/Create.cshtml")</returns>
+        [HttpGet]
         public IActionResult ShowCreate()
         {
             return View("~/Views/Customer/Create.cshtml");
@@ -39,8 +40,8 @@ namespace project.pole.Controllers.Customer
         /// Creates customer to database
         /// </summary>
         /// <param name="customer">customer</param>
-        /// <returns>RedirectToRoute("object_route")</returns>
-        [HttpPost("~/customer/create")]
+        /// <returns>RedirectToRoute("customer_route")</returns>
+        [HttpPost]
         public IActionResult Create(Models.Customer customer)
         {
             _customerRepository.Create(customer);

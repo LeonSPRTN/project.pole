@@ -9,7 +9,7 @@ namespace project.pole.Controllers.Customer
     /// Object Update controller
     /// </summary>
     [Authorize]
-    [Route("customer/update/", Name = "customer_update_route")]
+    [Route("customer/update", Name = "customer_update_route")]
     public class UpdateController : Controller
     {
         private readonly ILogger<UpdateController> _logger;

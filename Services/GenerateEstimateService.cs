@@ -2,18 +2,17 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using project.pole.Models;
 using project.pole.Services.Base;
 
 namespace project.pole.Services
 {
-    public class GenerateEstimateService: IGenerateEstimateService
+    public class EstimateService: IEstimateService
     {
         /// <summary>
         /// Generates a estimate file and save file and info about file to DB
         /// </summary>
         /// <returns>Return estimate</returns>
-        public Estimate Generate()
+        public void Generate()
         {
             var name = "test";
             var path = "C:/Estimate/";

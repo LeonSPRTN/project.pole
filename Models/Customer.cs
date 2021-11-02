@@ -37,9 +37,9 @@ namespace project.pole.Models
         public string House{ get; set; }
 
         [Column("Flat")]
-        [Display(Name = "Квартира/Офис")]
+        [Display(Name = "Офис")]
         public string Flat{ get; set; }
-        
-        public Estimate Estimaet { get; set; }
+
+        public List<ObjectWork> ObjectWorks { get; set; }
     }
 }

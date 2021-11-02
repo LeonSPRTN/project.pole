@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using project.pole.Services.Base;
 
 namespace project.pole.Controllers.Estimate
 {
@@ -10,6 +11,11 @@ namespace project.pole.Controllers.Estimate
     [Route("estimate/show/{id}", Name = "estimate_show_route")]
     public class ShowController : Controller
     {
+        private readonly IEstimateService _estimateService;
+        public ShowController(IEstimateService estimateService)
+        {
+            _estimateService = estimateService;
+        }
         /// <summary>
         /// Action show
         /// </summary>
@@ -17,6 +23,7 @@ namespace project.pole.Controllers.Estimate
         /// <returns>View</returns>
         public IActionResult Action(long id)
         {
+            _estimateService.Generate();
             return RedirectToRoute("estimate_route");
         }
     }

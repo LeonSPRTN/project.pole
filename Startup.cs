@@ -10,6 +10,9 @@ using System;
 using MySqlConnector;
 using project.pole.Data.Base;
 using project.pole.Data.Repositories;
+using project.pole.Models;
+using project.pole.Services;
+using project.pole.Services.Base;
 
 namespace project.pole
 {
@@ -36,6 +39,7 @@ namespace project.pole
                 });
 
             AddRepositories(services);
+            AddServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +73,12 @@ namespace project.pole
         private void AddRepositories(IServiceCollection services)
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IEstimateRepository, EstimateRepository>();
+            services.AddTransient<IObjectWorkRepository, ObjectWorkRepository>();
+        }
+        private void AddServices(IServiceCollection services)
+        {
+            services.AddTransient<IEstimateService, EstimateService>();
         }
     }
 }

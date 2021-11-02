@@ -29,8 +29,12 @@
         {
             <tr>
                 <th>
-                    <a asp-route="customer_delete_route" asp-route-id="@customer.Id"><img src="image/icon/icon_delete.png" alt="Удалить"/></a>
-                    <a asp-route="estimate_create_route" asp-route-id="@customer.Id"><img src="image/icon/icons_estimate.png" alt="Сформировать смету"/></a>
+                    <a asp-route="customer_delete_route" asp-route-id="@customer.Id"><img src="image/icon/customer/icon_delete.png" alt="Удалить"/></a>
+                    @* @if (customer.ObjectWorks.Any()) *@
+                    @* { *@
+                    <a asp-route="customer_object_work_route" asp-route-customerId="@customer.Id"><img src="image/icon/customer/icon_list.png" alt="Добавить список объектов"/></a>
+                    @* } *@
+                    <a asp-route="object_work_create_route" asp-route-customerId="@customer.Id"><img src="image/icon/customer/icon_add.png" alt="Открыть список объектов"/></a>
                 </th>
                 <th class="border-0">
                     <a asp-route="customer_show_route" asp-route-id="@customer.Id ">@customer.Name</a>

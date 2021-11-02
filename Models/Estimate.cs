@@ -5,13 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace project.pole.Models
 {
     [Table("estimate")]
-    public class Estimate
+    public class Estimate: BaseModel
     {
         private DateTime _dateCreated;
-
-        [Key]
-        [ForeignKey("Customer")]
-        public long Id { get; init; }
 
         [Column("path")]
         public string Path { get; set; }
@@ -23,6 +19,9 @@ namespace project.pole.Models
             private set => _dateCreated = DateTime.Now;
         }
 
+        public long ObjectWorkId { get; set; }
+        [Column("object_work")]
+        public ObjectWork ObjectWork { get; set; }
 
     }
 }

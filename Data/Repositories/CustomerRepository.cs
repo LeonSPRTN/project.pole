@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using project.pole.Data.Base;
 using project.pole.Models;
 
@@ -21,10 +18,6 @@ namespace project.pole.Data.Repositories
             _context = context;
         }
 
-        /// <summary>
-        /// Adds Customer data to database
-        /// </summary>
-        /// <param name="customer">Customer</param>
         public void Create(Customer customer)
         {
             using (_context)
@@ -34,24 +27,15 @@ namespace project.pole.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Finds Customer record by id
-        /// </summary>
-        /// <param name="id">model id</param>
-        /// <returns>Return Customer</returns>
         public Customer Find(long id)
         {
             using (_context)
             {
                 return _context.Customers
-                    .FirstOrDefault(x => x.Id == id);
+                    .Find(id);
             }
         }
 
-        /// <summary>
-        /// Retrieves all Customer records
-        /// </summary>
-        /// <returns>Customers list</returns>
         public List<Customer> FindAll()
         {
             using (_context)
@@ -60,10 +44,6 @@ namespace project.pole.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Updates Customer record in database
-        /// </summary>
-        /// <param name="customer">Customer</param>
         public void Update(Customer customer)
         {
             using (_context)
@@ -73,16 +53,26 @@ namespace project.pole.Data.Repositories
             }
         }
 
-        /// <summary>
-        /// Deletes Customer record in database
-        /// </summary>
-        /// <param name="customer"></param>
         public void Remove(Customer customer)
         {
             using (_context)
             {
                 _context.Customers.Remove(customer);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
+            }
+        }
+
+        public void Remove(long id)
+        {
+            using (_context)
+            {
+                var customer = new Customer
+                {
+                    Id = id
+                };
+                _context.Customers.Attach(customer);
+                _context.Customers.Remove(customer);
+                _context.SaveChanges();
             }
         }
     }

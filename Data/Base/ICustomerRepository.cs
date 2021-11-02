@@ -36,8 +36,14 @@ namespace project.pole.Data.Base
         /// <summary>
         /// Deletes Customer record in database
         /// </summary>
-        /// <param name="customer"></param>
+        /// <param name="customer">Customer</param>
         public void Remove(Customer customer);
+
+        /// <summary>
+        /// Deletes Customer record in database
+        /// </summary>
+        /// <param name="id">Id Customer</param>
+        public void Remove(long id);
 
     }
 }
