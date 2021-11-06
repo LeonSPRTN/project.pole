@@ -34,4 +34,8 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\kladr\jquery.fias.min.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\fonts" />
+  </ItemGroup>
+
 </Project>

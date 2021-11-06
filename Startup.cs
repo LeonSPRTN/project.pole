@@ -6,13 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using project.pole.Data;
-using System;
-using MySqlConnector;
 using project.pole.Data.Base;
 using project.pole.Data.Repositories;
-using project.pole.Models;
 using project.pole.Services;
-using project.pole.Services.Base;
 
 namespace project.pole
 {
@@ -73,7 +69,6 @@ namespace project.pole
         private void AddRepositories(IServiceCollection services)
         {
             services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<IEstimateRepository, EstimateRepository>();
             services.AddTransient<IObjectWorkRepository, ObjectWorkRepository>();
         }
         private void AddServices(IServiceCollection services)
