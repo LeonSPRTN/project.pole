@@ -29,19 +29,25 @@ namespace project.pole.Data.Repositories
 
         public Customer Find(long id)
         {
+            Customer customer = null;
             using (_context)
             {
-                return _context.Customers
+                customer = _context.Customers
                     .Find(id);
             }
+
+            return customer;
         }
 
         public List<Customer> FindAll()
         {
+            List<Customer> customers = null;
             using (_context)
             {
-                return _context.Customers.ToList();
+                customers = _context.Customers.ToList();
             }
+
+            return customers;
         }
 
         public void Update(Customer customer)

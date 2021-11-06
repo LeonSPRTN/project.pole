@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
 {
@@ -13,17 +13,17 @@ namespace project.pole.Controllers.Customer
     public class ShowController: Controller
     {
         private readonly ILogger<ShowController> _logger;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">logger</param>
-        /// <param name="unitOfWork">customer repository</param>
-        public ShowController(ILogger<ShowController> logger, UnitOfWork unitOfWork)
+        /// <param name="customerRepository">customer repository</param>
+        public ShowController(ILogger<ShowController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -33,12 +33,8 @@ namespace project.pole.Controllers.Customer
         /// <returns>View</returns>
         public IActionResult Action(long id)
         {
-            Models.Customer customer;
-            using (_unitOfWork)
-            {
-                customer = _unitOfWork.Customer.Find(id);
-            }
-            
+            var customer = _customerRepository.Find(id);
+
             return View("~/Views/Customer/Show.cshtml", customer);
         }
     }

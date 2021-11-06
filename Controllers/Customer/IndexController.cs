@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
 using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
@@ -15,17 +13,17 @@ namespace project.pole.Controllers.Customer
     public class IndexController : Controller
     {
         private readonly ILogger<IndexController> _logger;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">logger</param>
-        /// <param name="unitOfWork">customer repository</param>
-        public IndexController(ILogger<IndexController> logger, UnitOfWork unitOfWork)
+        /// <param name="customerRepository">customer repository</param>
+        public IndexController(ILogger<IndexController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _customerRepository = customerRepository;
         }
         
         /// <summary>
@@ -34,11 +32,7 @@ namespace project.pole.Controllers.Customer
         /// <returns>View</returns>
         public IActionResult Action()
         {
-            IList<Models.Customer> customer;
-            using (_unitOfWork)
-            {
-                customer = _unitOfWork.Customer.FindAll();
-            }
+            var customer = _customerRepository.FindAll();
 
             return View("~/Views/Customer/Index.cshtml", customer);
         }

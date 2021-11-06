@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
 using project.pole.Data.Base;
 
 namespace project.pole.Controllers.Customer
@@ -14,17 +13,17 @@ namespace project.pole.Controllers.Customer
     public class UpdateController : Controller
     {
         private readonly ILogger<UpdateController> _logger;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly ICustomerRepository _customerRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">logger</param>
-        /// <param name="unitOfWork">customer repository</param>
-        public UpdateController(ILogger<UpdateController> logger, UnitOfWork unitOfWork)
+        /// <param name="customerRepository">customer repository</param>
+        public UpdateController(ILogger<UpdateController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -33,11 +32,7 @@ namespace project.pole.Controllers.Customer
         /// <returns>View</returns>
         public IActionResult Action(Models.Customer customer)
         {
-            using (_unitOfWork)
-            {
-                _unitOfWork.Customer.Update(customer);
-                _unitOfWork.Save();
-            }
+            _customerRepository.Update(customer);
 
             return RedirectToRoute("customer_route");
         }

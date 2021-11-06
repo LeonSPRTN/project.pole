@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.ObjectWork
 {
@@ -13,17 +13,17 @@ namespace project.pole.Controllers.ObjectWork
     public class CreateController : Controller
     {
         private readonly ILogger<CreateController> _logger;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IObjectWorkRepository _objectWorkRepository;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">logger</param>
         /// <param name="objectWorkRepository">customer repository</param>
-        public CreateController(ILogger<CreateController> logger, UnitOfWork unitOfWork)
+        public CreateController(ILogger<CreateController> logger, IObjectWorkRepository objectWorkRepository)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _objectWorkRepository = objectWorkRepository;
         }
 
         /// <summary>
@@ -37,7 +37,6 @@ namespace project.pole.Controllers.ObjectWork
             {
                 CustomerId = customerId
             };
-
             return View("~/Views/ObjectWork/Create.cshtml", objectWork);
         }
 
@@ -49,11 +48,7 @@ namespace project.pole.Controllers.ObjectWork
         [HttpPost]
         public IActionResult Create(Models.ObjectWork objectWork)
         {
-            using (_unitOfWork)
-            {
-                _unitOfWork.ObjectWork.Create(objectWork);
-                _unitOfWork.Save();
-            }
+            _objectWorkRepository.Create(objectWork);
 
             return RedirectToRoute("customer_route");
         }

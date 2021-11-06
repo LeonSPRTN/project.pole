@@ -1,8 +1,7 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data;
+using project.pole.Data.Base;
 
 namespace project.pole.Controllers.ObjectWork
 {
@@ -16,17 +15,17 @@ namespace project.pole.Controllers.ObjectWork
         public class IndexController : Controller
         {
             private readonly ILogger<IndexController> _logger;
-            private readonly UnitOfWork _unitOfWork;
+            private readonly IObjectWorkRepository _objectWorkRepository;
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="logger"></param>
-            /// <param name="unitOfWork"></param>
-            public IndexController(ILogger<IndexController> logger, UnitOfWork unitOfWork)
+            /// <param name="objectWorkRepository"></param>
+            public IndexController(ILogger<IndexController> logger, IObjectWorkRepository objectWorkRepository)
             {
                 _logger = logger;
-                _unitOfWork = unitOfWork;
+                _objectWorkRepository = objectWorkRepository;
             }
 
             /// <summary>
@@ -35,11 +34,7 @@ namespace project.pole.Controllers.ObjectWork
             /// <returns>View</returns>
             public ActionResult Action()
             {
-                IList<Models.ObjectWork> objectWork;
-                using (_unitOfWork)
-                {
-                    objectWork = _unitOfWork.ObjectWork.FindAll();
-                }
+                var objectWork = _objectWorkRepository.FindAll();
 
                 return View("~/Views/ObjectWork/Show.cshtml", objectWork);
             }
