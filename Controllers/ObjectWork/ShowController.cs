@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data.Base;
+using project.pole.Data;
 
 namespace project.pole.Controllers.ObjectWork
 {
@@ -15,30 +16,18 @@ namespace project.pole.Controllers.ObjectWork
         public class IndexController : Controller
         {
             private readonly ILogger<IndexController> _logger;
-            private readonly IObjectWorkRepository _objectWorkRepository;
+            private readonly UnitOfWork _unitOfWork;
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="logger"></param>
-            /// <param name="objectWorkRepository"></param>
-            public IndexController(ILogger<IndexController> logger, IObjectWorkRepository objectWorkRepository)
+            /// <param name="unitOfWork"></param>
+            public IndexController(ILogger<IndexController> logger, UnitOfWork unitOfWork)
             {
                 _logger = logger;
-                _objectWorkRepository = objectWorkRepository;
+                _unitOfWork = unitOfWork;
             }
-
-            // /// <summary>
-            // /// Action index
-            // /// </summary>
-            // /// <returns>View</returns>
-            // public ActionResult Action(long customerId)
-            // {
-            //     var objectWork = _objectWorkRepository.Find(customerId);
-            //     ViewData["Customer"] = objectWork.Customer?.Name;
-            //
-            //     return View("~/Views/ObjectWork/Show.cshtml", objectWork);
-            // }
 
             /// <summary>
             /// Action index
@@ -46,7 +35,11 @@ namespace project.pole.Controllers.ObjectWork
             /// <returns>View</returns>
             public ActionResult Action()
             {
-                var objectWork = _objectWorkRepository.FindAll();
+                IList<Models.ObjectWork> objectWork;
+                using (_unitOfWork)
+                {
+                    objectWork = _unitOfWork.ObjectWork.FindAll();
+                }
 
                 return View("~/Views/ObjectWork/Show.cshtml", objectWork);
             }

@@ -68,8 +68,7 @@ namespace project.pole
 
         private void AddRepositories(IServiceCollection services)
         {
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<IObjectWorkRepository, ObjectWorkRepository>();
+            services.AddTransient<UnitOfWork>();
         }
         private void AddServices(IServiceCollection services)
         {

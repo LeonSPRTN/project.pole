@@ -7,18 +7,37 @@ using iText.Layout.Borders;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using project.pole.Data.Base;
+using project.pole.Data.Repositories;
 using project.pole.Models;
 
 namespace project.pole.Services
 {
     public class EstimateService : IEstimateService
     {
+        private readonly IObjectWorkRepository _objectWorkRepository;
+        private readonly ICustomerRepository _customerRepository;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="objectWorkRepository"></param>
+        /// <param name="customerRepository"></param>
+        public EstimateService(IObjectWorkRepository objectWorkRepository, ICustomerRepository customerRepository)
+        {
+            _objectWorkRepository = objectWorkRepository;
+            _customerRepository = customerRepository;
+        }
+
         /// <summary>
         /// Generates a estimate file
         /// </summary>
         /// <returns>Byte estimate file</returns>
         public byte[] Generate(long objectWorkId)
         {
+            var customerName1 = _customerRepository.Find(2);
+            var objectWork = _objectWorkRepository.Find(objectWorkId);
+            var customerName = _customerRepository.Find(objectWork.CustomerId);
+
             byte[] estimateFile;
 
             using (var memoryStream = new MemoryStream())
@@ -45,6 +64,7 @@ namespace project.pole.Services
                 document.Add(subheader);
 
                 Table tableNoBorder = new(new[] {300F, 300F});
+                tableNoBorder.SetBorder(Border.NO_BORDER);
                 tableNoBorder.SetFont(arial).SetFontSize(10);
                 tableNoBorder
                     .AddCell(
@@ -52,20 +72,20 @@ namespace project.pole.Services
                     .SetBorder(Border.NO_BORDER);
                 tableNoBorder.AddCell("").SetBorder(Border.NO_BORDER);
 
-                tableNoBorder.AddCell("ИСПОЛНИТЕЛЬ:").SetBorder(Border.NO_BORDER);
-                tableNoBorder.AddCell("ООО ГеоГрадСтрой").SetBorder(Border.NO_BORDER);
+                tableNoBorder.AddCell("ИСПОЛНИТЕЛЬ:");
+                tableNoBorder.AddCell("ООО ГеоГрадСтрой");
 
-                tableNoBorder.AddCell("ЗАКАЗЧИК:").SetBorder(Border.NO_BORDER);
-                tableNoBorder.AddCell("").SetBorder(Border.NO_BORDER);
+                tableNoBorder.AddCell("ЗАКАЗЧИК:");
+                tableNoBorder.AddCell($"{customerName}");
 
-                tableNoBorder.AddCell("Площадь участка, Га").SetBorder(Border.NO_BORDER);
-                tableNoBorder.AddCell("").SetBorder(Border.NO_BORDER);
+                tableNoBorder.AddCell("Площадь участка, Га");
+                tableNoBorder.AddCell($"{objectWork.PlotArea}");
 
-                tableNoBorder.AddCell("Площадь зданий, кв. м").SetBorder(Border.NO_BORDER);
-                tableNoBorder.AddCell("").SetBorder(Border.NO_BORDER);
+                tableNoBorder.AddCell("Площадь зданий, кв. м");
+                tableNoBorder.AddCell($"{objectWork.BuildingArea}");
 
-                tableNoBorder.AddCell("Глубина котлована, м").SetBorder(Border.NO_BORDER);
-                tableNoBorder.AddCell("").SetBorder(Border.NO_BORDER);
+                tableNoBorder.AddCell("Глубина котлована, м");
+                tableNoBorder.AddCell($"{objectWork.PitDepth}");
                 document.Add(tableNoBorder);
 
                 var subheaderTable =

@@ -16,37 +16,19 @@ namespace project.pole.Data.Repositories
 
         public void Create(ObjectWork objectWork)
         {
-            using (_context)
-            {
-                _context.ObjectWorks.Add(objectWork);
-                _context.SaveChanges();
-            }
+            _context.ObjectWorks.Add(objectWork);
         }
 
-        public IList<ObjectWork> FindAll()
-        {
-            using (_context)
-            {
-                return _context.ObjectWorks.ToList();
-            }
-        }
+        public IList<ObjectWork> FindAll() => _context.ObjectWorks.ToList();
 
-        public IList<ObjectWork> FindAll(long customerId)
-        {
-            using (_context)
-            {
-                return _context.ObjectWorks
-                    .Where(o=>o.CustomerId == customerId).ToList();
-            }
-        }
+        public IList<ObjectWork> FindAll(long customerId) => _context.ObjectWorks
+            .Where(o => o.CustomerId == customerId).ToList();
+
+        public ObjectWork Find(long id) => _context.ObjectWorks.Find(id);
 
         public void Remove(ObjectWork objectWork)
         {
-            using (_context)
-            {
-                _context.ObjectWorks.Remove(objectWork);
-                _context.SaveChanges();
-            }
+            _context.ObjectWorks.Remove(objectWork);
         }
 
         public void Remove(long id)

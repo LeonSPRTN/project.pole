@@ -8,6 +8,7 @@ namespace project.pole.Data.Base
         public void Create(ObjectWork objectWork);
         public IList<ObjectWork> FindAll();
         public IList<ObjectWork> FindAll(long customerId);
+        public ObjectWork Find(long id);
         public void Remove(ObjectWork objectWork);
         public void Remove(long id);
     }

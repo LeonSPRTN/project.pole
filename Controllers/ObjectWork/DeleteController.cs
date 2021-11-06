@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using project.pole.Data.Base;
+using project.pole.Data;
 
 namespace project.pole.Controllers.ObjectWork
 {
@@ -11,19 +11,17 @@ namespace project.pole.Controllers.ObjectWork
     public class DeleteController : Controller
     {
         private readonly ILogger<DeleteController> _logger;
-        private readonly IObjectWorkRepository _objectWorkRepository;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly UnitOfWork _unitOfWork;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger">logger</param>
-        /// <param name="objectWorkRepository">object work repository</param>
-        public DeleteController(ILogger<DeleteController> logger, IObjectWorkRepository objectWorkRepository, ICustomerRepository customerRepository)
+        /// <param name="unitOfWork"></param>
+        public DeleteController(ILogger<DeleteController> logger, UnitOfWork unitOfWork)
         {
             _logger = logger;
-            _objectWorkRepository = objectWorkRepository;
-            _customerRepository = customerRepository;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -36,7 +34,11 @@ namespace project.pole.Controllers.ObjectWork
         {
             if (id > 0 && customerId > 0)
             {
-                _objectWorkRepository.Remove(id);
+                using (_unitOfWork)
+                {
+                    _unitOfWork.ObjectWork.Remove(id);
+                    _unitOfWork.Save();
+                }
             }
             return RedirectToRoute("customer_object_work_route", new {customerId = customerId});
         }

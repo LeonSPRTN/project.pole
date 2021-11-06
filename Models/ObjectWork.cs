@@ -65,7 +65,5 @@ namespace project.pole.Models
         [Column("customer_id")]
         public long CustomerId { get; set; }
         public Customer Customer { get; set; }
-
-        public Estimate Estimaet { get; set; }
     }
 }
