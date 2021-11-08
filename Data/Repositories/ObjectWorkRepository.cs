@@ -5,7 +5,7 @@ using project.pole.Models;
 
 namespace project.pole.Data.Repositories
 {
-    public class ObjectWorkRepository: IObjectWorkRepository
+    public class ObjectWorkRepository : IObjectWorkRepository
     {
         private readonly ApplicationContext _context;
 
@@ -23,10 +23,17 @@ namespace project.pole.Data.Repositories
             }
         }
 
-        public IList<ObjectWork> FindAll()
+        public IList<ObjectWork> FindAll(bool dispose = true)
         {
             IList<ObjectWork> objectWorks;
-            using (_context)
+            if (dispose)
+            {
+                using (_context)
+                {
+                    objectWorks = _context.ObjectWorks.ToList();
+                }
+            }
+            else
             {
                 objectWorks = _context.ObjectWorks.ToList();
             }
@@ -34,10 +41,18 @@ namespace project.pole.Data.Repositories
             return objectWorks;
         }
 
-        public IList<ObjectWork> FindAll(long customerId)
+        public IList<ObjectWork> FindAll(long customerId, bool dispose = true)
         {
             IList<ObjectWork> objectWorks;
-            using (_context)
+            if (dispose)
+            {
+                using (_context)
+                {
+                    objectWorks = _context.ObjectWorks
+                        .Where(o => o.CustomerId == customerId).ToList();
+                }
+            }
+            else
             {
                 objectWorks = _context.ObjectWorks
                     .Where(o => o.CustomerId == customerId).ToList();
@@ -46,10 +61,17 @@ namespace project.pole.Data.Repositories
             return objectWorks;
         }
 
-        public ObjectWork Find(long id)
+        public ObjectWork Find(long id, bool dispose = true)
         {
             ObjectWork objectWork;
-            using (_context)
+            if (dispose)
+            {
+                using (_context)
+                {
+                    objectWork = _context.ObjectWorks.Find(id);
+                }
+            }
+            else
             {
                 objectWork = _context.ObjectWorks.Find(id);
             }

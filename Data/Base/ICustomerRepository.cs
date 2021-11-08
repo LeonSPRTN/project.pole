@@ -18,14 +18,16 @@ namespace project.pole.Data.Base
         /// Finds Customer record by id
         /// </summary>
         /// <param name="id">model id</param>
+        /// <param name="dispose"></param>
         /// <returns>Return Customer</returns>
-        public Customer Find(long id);
+        public Customer Find(long id, bool dispose = true);
 
         /// <summary>
         /// Retrieves all Customer records
         /// </summary>
+        /// <param name="dispose"></param>
         /// <returns>Customers list</returns>
-        public List<Customer> FindAll();
+        public List<Customer> FindAll(bool dispose = true);
 
         /// <summary>
         /// Updates Customer record in database

@@ -27,26 +27,41 @@ namespace project.pole.Data.Repositories
             }
         }
 
-        public Customer Find(long id)
+        public Customer Find(long id, bool dispose = true)
         {
-            Customer customer = null;
-            using (_context)
+            Customer customer;
+            if (dispose)
+            {
+                using (_context)
+                {
+                    customer = _context.Customers
+                        .Find(id);
+                }
+            }
+            else
             {
                 customer = _context.Customers
                     .Find(id);
             }
-
+            
             return customer;
         }
 
-        public List<Customer> FindAll()
+        public List<Customer> FindAll(bool dispose = true)
         {
-            List<Customer> customers = null;
-            using (_context)
+            List<Customer> customers;
+            if (dispose)
+            {
+                using (_context)
+                {
+                    customers = _context.Customers.ToList();
+                }
+            }
+            else
             {
                 customers = _context.Customers.ToList();
             }
-
+            
             return customers;
         }
 
