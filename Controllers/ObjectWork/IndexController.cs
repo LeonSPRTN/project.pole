@@ -37,18 +37,5 @@ namespace project.pole.Controllers.ObjectWork
 
             return View("~/Views/ObjectWork/Index.cshtml", objectWorks);
         }
-
-        /// <summary>
-        /// Action index
-        /// </summary>
-        /// <returns>View</returns>
-        [Authorize]
-        [Route("object-work", Name = "object_work_route")]
-        public ActionResult Action()
-        {
-            var objectWorks = _objectWorkRepository.FindAll();
-
-            return View("~/Views/ObjectWork/Index.cshtml", objectWorks);
-        }
     }
 }

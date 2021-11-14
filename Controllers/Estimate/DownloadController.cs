@@ -36,7 +36,7 @@ namespace project.pole.Controllers.Estimate
         {
             var estimateFile = _estimateService.Generate(objectWorkId);
 
-            return File(estimateFile, "application/pdf", "Смета.pdf");
+            return File(estimateFile, "application/vnd.ms-excel", "Смета.xlsx");
         }
     }
 }

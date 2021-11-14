@@ -7,12 +7,12 @@
 
 <div>
 
-    <button type="button" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
-
     <h3>@ViewBag.Title</h3>
 
     <br/>
-
+    
+    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
+    
     <table class="table table-bordered table-invers">
         <thead class="thead-inverse">
         <tr>
@@ -38,6 +38,7 @@
         {
             <tr>
                 <th>
+                    <a asp-route="customer_object_work_delete_route" asp-route-id="@objectWork.Id" asp-route-customerId="@objectWork.CustomerId"><img src="image/icon/object_work/icon_delete.png" alt="Удалить"/></a>
                     <a asp-route="object_work_estimate_download_route" asp-route-objectWorkId="@objectWork.Id"><img src="image/icon/object_work/icon_estimate.png" alt="Сформировать смету"/></a>
                 </th>
                 <th class="border-0">

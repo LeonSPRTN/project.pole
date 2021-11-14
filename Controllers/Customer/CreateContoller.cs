@@ -27,7 +27,7 @@ namespace project.pole.Controllers.Customer
         }
         
         /// <summary>
-        /// Shows create Customer
+        /// Shows form create Customer
         /// </summary>
         /// <returns>View("~/Views/ObjectWork/Create.cshtml")</returns>
         [HttpGet]
@@ -37,7 +37,7 @@ namespace project.pole.Controllers.Customer
         }
 
         /// <summary>
-        /// Creates customer to database
+        /// Creates customer
         /// </summary>
         /// <param name="customer">customer</param>
         /// <returns>RedirectToRoute("customer_route")</returns>

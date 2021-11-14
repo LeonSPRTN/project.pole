@@ -6,12 +6,11 @@
 }
 
 <div>
-
-    <button type="button" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
-
     <h3>@ViewBag.Title</h3>
 
     <br/>
+
+    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.RouteUrl("customer_create_route")'">Добавить</button>
 
     <table class="table table-bordered table-invers">
         <thead class="thead-inverse">
@@ -30,10 +29,7 @@
             <tr>
                 <th>
                     <a asp-route="customer_delete_route" asp-route-id="@customer.Id"><img src="image/icon/customer/icon_delete.png" alt="Удалить"/></a>
-                    @* @if (customer.ObjectWorks.Any()) *@
-                    @* { *@
                     <a asp-route="customer_object_work_route" asp-route-customerId="@customer.Id"><img src="image/icon/customer/icon_list.png" alt="Добавить список объектов"/></a>
-                    @* } *@
                     <a asp-route="object_work_create_route" asp-route-customerId="@customer.Id"><img src="image/icon/customer/icon_add.png" alt="Открыть список объектов"/></a>
                 </th>
                 <th class="border-0">

@@ -1,0 +1,84 @@
+@using project.pole.StaticClasses
+@model Price
+
+@{
+    ViewBag.Title = $@"Объекты {ViewData["Customer"]}";
+    Layout = "_Layout";
+}
+
+<div>
+    <h3>@ViewBag.Title</h3>
+
+    <br/>
+    @using (Html.BeginRouteForm("price_create_route", FormMethod.Post, new {@class = "form-inline"}))
+{
+        @Html.LabelFor(m => m.TypePrice,
+            new
+            {
+                @class = "col-form-label"
+            })
+        @Html.DropDownListFor(m => m.TypePrice, Html.GetEnumSelectList<TypePrice>(),
+            new
+            {
+                @class = "custom-select mr-sm-2",
+                id = "inlineFormCustomSelect",
+                style = "width:270px"
+            })
+
+        @Html.LabelFor(m => m.PriceValue)
+    @Html.TextBoxFor(m=>m.PriceValue,
+        new
+        {
+            @class = "form-control"
+        })
+
+    <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
+    }
+
+    <table class="table table-bordered table-invers">
+        <thead class="thead-inverse">
+        <tr>
+            <th width="10%">
+                <p>Действия</p>
+            </th>
+            <th>
+                <p>Тип</p>
+            </th>
+            <th>
+                <p>Цена</p>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Price price in ViewBag.Prices)
+        {
+            <tr>
+                <th>
+                    <a asp-route="price_delete_route" asp-route-id="@price.Id"><img src="image/icon/customer/icon_delete.png" alt="Удалить"/></a>
+                </th>
+                <th class="border-0">
+                    <a>@RazorExtensions.GetDisplayName(price.TypePrice)</a>
+                </th>
+                <th class="border-0">
+                    <a>@price.PriceValue</a>
+                </th>>
+            </tr>
+        }
+        <tbody>
+    </table>
+</div>
+
+<script>
+let priceValueElement = document.getElementById("PriceValue");
+
+priceValueElement.onkeydown = function(){
+    prohibitTextInput(this);
+}
+priceValueElement.onkeyup = function(){
+    prohibitTextInput(this);
+}
+
+function prohibitTextInput(element){
+    element.value = element.value.replace(/[^0-9\,]/g, '');
+}
+</script>

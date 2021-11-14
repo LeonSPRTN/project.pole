@@ -27,7 +27,7 @@ namespace project.pole.Controllers.ObjectWork
         }
 
         /// <summary>
-        /// Shows create Customer
+        /// Shows form create Customer
         /// </summary>
         /// <returns>View("~/Views/Customer/Create.cshtml")</returns>
         [HttpGet]
@@ -41,7 +41,7 @@ namespace project.pole.Controllers.ObjectWork
         }
 
         /// <summary>
-        /// Creates customer to database
+        /// Creates customer
         /// </summary>
         /// <param name="objectWork"></param>
         /// <returns>RedirectToRoute("object_route")</returns>
@@ -50,7 +50,7 @@ namespace project.pole.Controllers.ObjectWork
         {
             _objectWorkRepository.Create(objectWork);
 
-            return RedirectToRoute("customer_route");
+            return RedirectToRoute("customer_object_work_route");
         }
     }
 }

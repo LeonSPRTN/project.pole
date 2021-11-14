@@ -8,6 +8,8 @@ namespace project.pole.Controllers.ObjectWork
     /// <summary>
     /// Object Delete controller
     /// </summary>
+    [Authorize]
+    [Route("customer/{customerId:long}/object-work/{id:long}/delete", Name = "customer_object_work_delete_route")]
     public class DeleteController : Controller
     {
         private readonly ILogger<DeleteController> _logger;
@@ -23,13 +25,11 @@ namespace project.pole.Controllers.ObjectWork
             _logger = logger;
             _objectWorkRepository = objectWorkRepository;
         }
-
+        
         /// <summary>
         /// Action delete
         /// </summary>
         /// <returns>View</returns>
-        [Authorize]
-        [Route("customer/{customerId:long}/object-work/{id:long}/delete", Name = "customer_object_work_delete_route")]
         public IActionResult Action(long id, long customerId)
         {
             if (id > 0 && customerId > 0)
