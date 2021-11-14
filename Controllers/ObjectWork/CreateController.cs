@@ -50,7 +50,7 @@ namespace project.pole.Controllers.ObjectWork
         {
             _objectWorkRepository.Create(objectWork);
 
-            return RedirectToRoute("customer_object_work_route");
+            return RedirectToRoute("customer_object_work_route", new { customerId = objectWork.CustomerId });
         }
     }
 }
