@@ -37,22 +37,24 @@
         </div>
         <div class="field">
             @Html.LabelFor(o => o.Inteco)
-            @Html.TextBoxFor(o => o.Inteco)
+            @Html.TextBoxFor(o => o.Inteco, "")
         </div>
         <div class="field">
+            @Html.LabelFor(o => o.WithoutRadon)
             @Html.CheckBoxFor(o => o.WithoutRadon)
-            @Html.TextBoxFor(o => o.WithoutRadon)
         </div>
         <div class="field">
+            @Html.LabelFor(o => o.Track)
             @Html.CheckBoxFor(o => o.Track)
-            @Html.TextBoxFor(o => o.Track)
         </div>
         <div class="field">
-            @Html.EditorFor(o => o.MoscowCoefficient)
+            @Html.LabelFor(o => o.MoscowCoefficient)
+            @Html.CheckBoxFor(o => o.MoscowCoefficient)
         </div>
-        @Html.TextBoxFor(o => o.CustomerId)
         <div>
             <button id="btn-submit" type="submit">Сохранить</button>
         </div>
     }
 </section>
+
+<script src="~/js/object_work/form.js"></script>

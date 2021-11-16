@@ -11,7 +11,7 @@
 
     <br/>
     @using (Html.BeginRouteForm("price_create_route", FormMethod.Post, new {@class = "form-inline"}))
-{
+    {
         @Html.LabelFor(m => m.TypePrice,
             new
             {
@@ -26,13 +26,13 @@
             })
 
         @Html.LabelFor(m => m.PriceValue)
-    @Html.TextBoxFor(m=>m.PriceValue,
-        new
-        {
-            @class = "form-control"
-        })
+        @Html.TextBoxFor(m => m.PriceValue,
+            new
+            {
+                @class = "form-control"
+            })
 
-    <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
+        <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
     }
 
     <table class="table table-bordered table-invers">
@@ -68,17 +68,4 @@
     </table>
 </div>
 
-<script>
-let priceValueElement = document.getElementById("PriceValue");
-
-priceValueElement.onkeydown = function(){
-    prohibitTextInput(this);
-}
-priceValueElement.onkeyup = function(){
-    prohibitTextInput(this);
-}
-
-function prohibitTextInput(element){
-    element.value = element.value.replace(/[^0-9\,]/g, '');
-}
-</script>
+<script src="~/js/price/index.js"></script>
