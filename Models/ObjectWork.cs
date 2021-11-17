@@ -60,7 +60,7 @@ namespace project.pole.Models
         
         [Column("winter_coefficient")]
         [Display(Name = "Зимний коэффициент")]
-        public double WinterCoefficient { get; set; }
+        public bool WinterCoefficient { get; set; }
 
         [Column("customer_id")]
         public long CustomerId { get; set; }
