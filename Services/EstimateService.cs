@@ -60,61 +60,122 @@ namespace project.pole.Services
                     worksheets.Cells[11, 7].Value = objectWork.PitDepth.ToString(culture);
 
                     //18. Бактериология
-                    var quantityBacteriology = (objectWork.PlotArea * 2);
+                    var quantityBacteriology = objectWork.PlotArea * 2;
                     worksheets.Cells[52, 7].Value = quantityBacteriology.ToString(culture);
-                    var priceBacteriology = prices.FirstOrDefault(x => x.TypePrice == TypePrice.Bacteriology).PriceValue;
+                    var priceBacteriology =
+                        prices.FirstOrDefault(x => x.TypePrice == TypePrice.Bacteriology).PriceValue;
                     worksheets.Cells[52, 9].Value = priceBacteriology.ToString(culture);
                     var sumBacteriology = quantityBacteriology * quantityBacteriology;
                     worksheets.Cells[52, 10].Value = sumBacteriology.ToString(culture);
 
-                    // //1. Отбор поверхностных проб грунта
+                    //1. Отбор поверхностных проб грунта
                     var quantitySamplingSurfaceSoilSamples = objectWork.PlotArea * 6 + quantityBacteriology;
                     worksheets.Cells[16, 7].Value = quantityBacteriology.ToString(culture);
-                    var priceSamplingSurfaceSoilSamples = prices.FirstOrDefault(x => x.TypePrice == TypePrice.SamplingSurfaceSoilSamples).PriceValue;
+                    var priceSamplingSurfaceSoilSamples = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.SamplingSurfaceSoilSamples).PriceValue;
                     worksheets.Cells[16, 9].Value = priceSamplingSurfaceSoilSamples.ToString(culture);
                     var sumSamplingSurfaceSoilSamples =
                         quantitySamplingSurfaceSoilSamples * priceSamplingSurfaceSoilSamples * 0.85;
                     worksheets.Cells[16, 10].Value = sumSamplingSurfaceSoilSamples.ToString(culture);
 
-                    // worksheets.Cells[19, 7] = quantity_2_1;
-                    // worksheets.Cells[19, 9] = price_2_1;
-                    // worksheets.Cells[19, 10] = sum_2_1;
-                    //
-                    // worksheets.Cells[20, 7] = quantity_2_2;
-                    // worksheets.Cells[20, 9] = price_2_2;
-                    // worksheets.Cells[20, 10] = sum_2_2;
-                    //
-                    // worksheets.Cells[24, 7] = quantity_3;
-                    // worksheets.Cells[24, 9] = price_3_1;
-                    // worksheets.Cells[24, 10] = sum_3_1;
-                    //
-                    // worksheets.Cells[25, 7] = quantity_3;
-                    // worksheets.Cells[25, 9] = price_3_2;
-                    // worksheets.Cells[25, 10] = sum_3_2;
-                    //
-                    // worksheets.Cells[27, 7] = quantity_4;
-                    // worksheets.Cells[27, 9] = price_4;
-                    // worksheets.Cells[27, 10] = sum_4;
-                    //
-                    // if (!coefficientTrails)
-                    // {
-                    //     worksheets.Cells[30, 7] = quantity_5;
-                    //     worksheets.Cells[30, 9] = price_5_1;
-                    //     worksheets.Cells[30, 10] = sum_5_1;
-                    //
-                    //     worksheets.Cells[31, 7] = quantity_5;
-                    //     worksheets.Cells[31, 9] = price_5_2;
-                    //     worksheets.Cells[31, 10] = sum_5_2;
-                    //
-                    //     worksheets.Cells[32, 7] = quantity_5;
-                    //     worksheets.Cells[32, 9] = price_5_3;
-                    //     worksheets.Cells[32, 10] = sum_5_3;
-                    // }
-                    //
+                    //2. Отбор грунта из скважин на гаммо-спектометрию
+                    double meterWell = objectWork.PitDepth + 10; //метраж скважины
+
+                    double? quantitySamplingSoilFromWellsGammaSpectrometry;
+
+                    switch (meterWell)
+                    {
+                        case >= 11 and < 15:
+                            quantitySamplingSoilFromWellsGammaSpectrometry = 6;
+                            break;
+                        case 15:
+                            quantitySamplingSoilFromWellsGammaSpectrometry = 7;
+                            break;
+                        case > 15 and < 20:
+                            quantitySamplingSoilFromWellsGammaSpectrometry = 8;
+                            break;
+                        case >= 20:
+                            quantitySamplingSoilFromWellsGammaSpectrometry = 9;
+                            break;
+                        default:
+                            quantitySamplingSoilFromWellsGammaSpectrometry = 5;
+                            break;
+                    }
+                    
+                    worksheets.Cells[19, 7].Value = quantitySamplingSoilFromWellsGammaSpectrometry;
+                    var priceSamplingSoilFromWellsGammaSpectrometry = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.SamplingSoilFromWellsGammaSpectrometry).PriceValue;
+                    worksheets.Cells[19, 9].Value = priceSamplingSoilFromWellsGammaSpectrometry;
+                    worksheets.Cells[19, 10].Value = quantitySamplingSoilFromWellsGammaSpectrometry * priceSamplingSoilFromWellsGammaSpectrometry * 0.85;
+                    
+                    //Отбор грунта из скважин на сонетарно-химическое обследование
+                    double quantitySoilSamplingFromWellsFsanitaryAndChemicalInspection = objectWork.PitDepth;
+                    var priceSoilSamplingFromWellsFsanitaryAndChemicalInspection = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.SoilSamplingFromWellsFsanitaryAndChemicalInspection).PriceValue;
+                    worksheets.Cells[20, 7].Value = quantitySoilSamplingFromWellsFsanitaryAndChemicalInspection;
+                    worksheets.Cells[20, 9].Value = priceSoilSamplingFromWellsFsanitaryAndChemicalInspection;
+                    worksheets.Cells[20, 10].Value = quantitySoilSamplingFromWellsFsanitaryAndChemicalInspection * priceSoilSamplingFromWellsFsanitaryAndChemicalInspection * 0.85;
+
+                    //y-съемка(полевые работы)
+                    var quantityGammasHooting = objectWork.PlotArea;
+                    worksheets.Cells[24, 7].Value = quantityGammasHooting;
+                    var priceGammasHootingFieldWork = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.GammasHootingFieldWork).PriceValue;
+                    worksheets.Cells[24, 9].Value = priceGammasHootingFieldWork;
+                    worksheets.Cells[24, 10].Value = quantityGammasHooting * priceGammasHootingFieldWork;
+
+                    //y-съемка(камеральные работы)
+                    worksheets.Cells[25, 7].Value = quantityGammasHooting;
+                    var priceGammasHootingDeskWork = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.GammasHootingDeskWork).PriceValue;
+                    worksheets.Cells[25, 9].Value = priceGammasHootingDeskWork;
+                    worksheets.Cells[25, 10].Value = priceGammasHootingDeskWork * quantityGammasHooting;
+                     
+                    //y-спектометрия
+                    var quantityGammaSpectrometry = objectWork.PlotArea * 6;
+                    worksheets.Cells[27, 7].Value = quantityGammaSpectrometry;
+                    var priceGammaSpectrometry = prices
+                        .FirstOrDefault(x => x.TypePrice == TypePrice.GammaSpectrometry).PriceValue;
+                    worksheets.Cells[27, 9].Value = priceGammaSpectrometry;
+                    worksheets.Cells[27, 10].Value = quantityGammaSpectrometry * priceGammaSpectrometry;
+
+                    //Измерение плотности потока радона из грунта
+                    var quantityMeasurementRadonFluxDensityCalculation = objectWork.BuildingArea / 200;
+                    var quantityMeasurementRadonFluxDensity = quantityMeasurementRadonFluxDensityCalculation < 20
+                        ? 20
+                        : quantityMeasurementRadonFluxDensityCalculation;
+                    
+                    if (!objectWork.Track)
+                    {
+                        //Полевые работы
+                        worksheets.Cells[30, 7].Value = quantityMeasurementRadonFluxDensity;
+                        var priceMeasurementRadonFluxDensityFromGroundFieldWork = prices
+                            .FirstOrDefault(x => x.TypePrice == TypePrice.MeasurementRadonFluxDensityFromGroundFieldWork).PriceValue;
+                        worksheets.Cells[30, 9].Value = priceMeasurementRadonFluxDensityFromGroundFieldWork;
+                        worksheets.Cells[30, 10].Value = priceMeasurementRadonFluxDensityFromGroundFieldWork * quantityMeasurementRadonFluxDensity * 1.1 * 0.85;
+
+                        //камеральные работы
+                        worksheets.Cells[31, 7].Value = quantityMeasurementRadonFluxDensity;
+                        var priceMeasurementRadonFluxDensityFromGroundDeskWork = prices
+                            .FirstOrDefault(x => x.TypePrice == TypePrice.MeasurementRadonFluxDensityFromGroundDeskWork).PriceValue;
+                        worksheets.Cells[31, 9].Value = priceMeasurementRadonFluxDensityFromGroundDeskWork;
+                        worksheets.Cells[31, 10].Value = priceMeasurementRadonFluxDensityFromGroundDeskWork * quantityMeasurementRadonFluxDensity;
+
+                        //бета-спектрометрия
+                        worksheets.Cells[32, 7].Value = quantityMeasurementRadonFluxDensity;
+                        var priceMeasurementRadonFluxDensityFromGroundBetaSpectrometry = prices
+                            .FirstOrDefault(x => x.TypePrice == TypePrice.MeasurementRadonFluxDensityFromGroundBetaSpectrometry).PriceValue;
+                        worksheets.Cells[31, 9].Value = priceMeasurementRadonFluxDensityFromGroundDeskWork;
+                        worksheets.Cells[32, 9].Value = priceMeasurementRadonFluxDensityFromGroundBetaSpectrometry;
+                        worksheets.Cells[32, 10].Value = priceMeasurementRadonFluxDensityFromGroundBetaSpectrometry * quantityMeasurementRadonFluxDensity;
+                    }
+                    
+                    //Пробоподготовка
                     // worksheets.Cells[34, 7] = quantity_6;
                     // worksheets.Cells[34, 9] = price_6;
                     // worksheets.Cells[34, 10] = sum_6;
-                    //
+                    
+                    
                     // worksheets.Cells[35, 7] = quantity_6;
                     // worksheets.Cells[35, 9] = price_7;
                     // worksheets.Cells[35, 10] = sum_7;
