@@ -34,21 +34,17 @@ namespace project.pole.Models
         [Display(Name = "Глубина котлована(м)")]
         public double PitDepth { get; set; }
 
-        [Column("winter_coefficient")]
-        [Display(Name = "Зимний коэффициент")]
-        public double WinterCoefficient { get; set; }
-
         [Column("inteco")]
         [Display(Name = "Интеко")]
-        public double Inteco { get; set; }
+        public bool Inteco { get; set; }
 
         [Column("budget")]
         [Display(Name = "Бюджетный")]
-        public double Budget { get; set; }
+        public bool Budget { get; set; }
 
         [Column("without_coefficient")]
         [Display(Name = "Без коэффициента")]
-        public double WithoutCoefficient { get; set; }
+        public bool WithoutCoefficient { get; set; }
 
         [Column("moscow_coefficient")]
         [Display(Name = "Московкий коэффициент")]
@@ -61,6 +57,10 @@ namespace project.pole.Models
         [Column("track")]
         [Display(Name = "Трасса")]
         public bool Track { get; set; }
+        
+        [Column("winter_coefficient")]
+        [Display(Name = "Зимний коэффициент")]
+        public double WinterCoefficient { get; set; }
 
         [Column("customer_id")]
         public long CustomerId { get; set; }
