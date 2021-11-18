@@ -71,6 +71,7 @@ namespace project.pole
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IObjectWorkRepository, ObjectWorkRepository>();
             services.AddTransient<IPriceRepository, PriceRepository>();
+            services.AddTransient<ISettingEstimateRepository, SettingEstimateRepository>();
         }
         private void AddServices(IServiceCollection services)
         {

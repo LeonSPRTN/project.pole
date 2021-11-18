@@ -1,0 +1,41 @@
+@model project.pole.Models.SettingEstimate
+
+@{
+    ViewBag.Title = "Настройка сметы";
+    Layout = "_Layout";
+}
+
+<div>
+
+    <h3>@ViewBag.Title</h3>
+
+    <br/>
+    
+    <section>
+        @using (Html.BeginRouteForm("setting_estimate_route", FormMethod.Post))
+        {
+            @Html.HiddenFor(m=>m.Id)
+            <div class="field">
+                @Html.LabelFor(m => m.Nds)
+                @Html.TextBoxFor(m => m.Nds)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.BudgetCoefficient)
+                @Html.TextBoxFor(m => m.BudgetCoefficient)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.InflationRate)
+                @Html.TextBoxFor(m => m.InflationRate)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.IntecoCoefficient)
+                @Html.TextBoxFor(m => m.IntecoCoefficient)
+            </div>
+            <div>
+                <button id="btn-submit" type="submit">Сохранить</button>
+            </div>
+        }
+    </section>
+</div>
+
+<script src="~/js/setting_estimate/form.js"></script>

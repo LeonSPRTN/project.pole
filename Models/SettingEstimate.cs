@@ -8,18 +8,18 @@ namespace project.pole.Models
     {
         [Column("budget_coefficient")]
         [Display(Name = "Бюджетный коэффициент")]
-        public int BudgetCoefficient { get; set; }
+        public double BudgetCoefficient { get; set; }
 
         [Column("inteco_coefficient")]
         [Display(Name = "Коэффициент ИНТЕКО")]
-        public int IntecoCoefficient { get; set; }
+        public double IntecoCoefficient { get; set; }
 
         [Column("inflation_rate")]
         [Display(Name = "Коэффициент инфляции")]
-        public int InflationRate { get; set; }
+        public double InflationRate { get; set; }
 
         [Column("nds")]
         [Display(Name = "НДС")]
-        public int Nds { get; set; }
+        public double Nds { get; set; }
     }
 }
