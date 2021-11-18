@@ -330,13 +330,9 @@ namespace project.pole.Services
                     if (objectWork.Budget)
                     {
                         textTotal = $"{textTotal.Replace("=", "")} x {settingEstimate.BudgetCoefficient}= ";
-                        textNote = $"{textNote} 0,59 - понижающий коэффициент для бюджетных организаций";
+                        textNote = $"{textNote}0,59 - понижающий коэффициент для бюджетных организаций";
                     }
 
-                    // string textNote = !buttonBudget ? $"{inflation} - коэффициент инфляции, установленный в соответствии с Письмом Минстроя России № 20289-ДВ/09 от 05.06.2019 г.;"
-                    //     : $"{inflation} - коэффициент инфляции, установленный в соответствии с Письмом Минстроя России № 20289-ДВ/09 от 05.06.2019 г.; 0,59 - понижающий коэффициент для бюджетных организаций";
-                    
-                    
                     //Санитарно - экологическая экспертиза инструментальных и лабораторных исследований в составе
                     //предпроектной(проектной) документации с гигиеническими рекомендациями(радиация)
                     var radiation = prices
@@ -366,7 +362,7 @@ namespace project.pole.Services
                     
                     // НДС
                     worksheets.Cells[60, 9].Value = $"{settingEstimate.Nds}%";
-                    var nds = totalDdiscount * settingEstimate.Nds;
+                    var nds = totalDdiscount * (settingEstimate.Nds/100);
                     worksheets.Cells[60, 10].Value = nds;
                     
                     //ОБЩАЯ СТОИМОСТЬ
